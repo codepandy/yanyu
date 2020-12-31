@@ -5,7 +5,7 @@ import { list } from './data.json'
 const read_time_key = 'read_time_key'
 const record_index_key = 'record_index_key'
 function App() {
-	const [ info, setInfo ] = useState({})
+	const [ info, setInfo ] = useState({ ...list[0] })
 
 	useEffect(() => {
 		const time = localStorage.getItem(read_time_key)
@@ -16,9 +16,6 @@ function App() {
 		if (time && nowDate.toString() !== time) {
 			localStorage.setItem(record_index_key, `${index + 1}`)
 			setInfo({ ...list[index + 1] })
-		} else {
-			localStorage.setItem(record_index_key, '0')
-			setInfo({ ...list[0] })
 		}
 	}, [])
 	const onDoubleClick = () => {
