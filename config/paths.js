@@ -21,6 +21,8 @@ const publicUrlOrPath = getPublicUrlOrPath(
 	process.env.PUBLIC_URL
 )
 
+// console.log(publicUrlOrPath, 'dddddddddddddddddd')
+
 const moduleFileExtensions = [
 	'web.mjs',
 	'mjs',

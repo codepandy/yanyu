@@ -8,14 +8,15 @@ function App() {
 	const [ info, setInfo ] = useState({})
 
 	useEffect(() => {
-		const time = +(localStorage.getItem(read_time_key) || 0)
+		const time = localStorage.getItem(read_time_key)
 		const index = +(localStorage.getItem(record_index_key) || 0)
-		const now = Date.now()
-		if (time && now - time > 1000 * 60 * 60 * 24) {
+		const nowDate = new Date(new Date().toLocaleDateString()).getTime() // 获取当天凌晨的时间戳
+
+		localStorage.setItem(read_time_key, nowDate)
+		if (time && nowDate !== time) {
 			localStorage.setItem(record_index_key, `${index + 1}`)
 			setInfo({ ...list[index + 1] })
 		} else {
-			localStorage.setItem(read_time_key, now)
 			localStorage.setItem(record_index_key, '0')
 			setInfo({ ...list[0] })
 		}
