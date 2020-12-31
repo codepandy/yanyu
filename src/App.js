@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import './App.css'
 import { list } from './data.json'
 
@@ -13,7 +13,7 @@ function App() {
 		const nowDate = new Date(new Date().toLocaleDateString()).getTime() // 获取当天凌晨的时间戳
 
 		localStorage.setItem(read_time_key, nowDate)
-		if (time && nowDate !== time) {
+		if (time && nowDate.toString() !== time) {
 			localStorage.setItem(record_index_key, `${index + 1}`)
 			setInfo({ ...list[index + 1] })
 		} else {
@@ -21,8 +21,11 @@ function App() {
 			setInfo({ ...list[0] })
 		}
 	}, [])
+	const onDoubleClick = () => {
+		localStorage.setItem(record_index_key, '1')
+	}
 	return (
-		<div className="App">
+		<div className="App" onDoubleClick={onDoubleClick}>
 			<section className="content">{info.text}</section>
 		</div>
 	)
