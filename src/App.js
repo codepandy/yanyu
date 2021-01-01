@@ -16,6 +16,8 @@ function App() {
 		if (time && nowDate.toString() !== time) {
 			localStorage.setItem(record_index_key, `${index + 1}`)
 			setInfo({ ...list[index + 1] })
+		} else {
+			setInfo({ ...list[index] })
 		}
 	}, [])
 	const onDoubleClick = () => {
