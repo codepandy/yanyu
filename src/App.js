@@ -14,14 +14,18 @@ function App() {
 
 		localStorage.setItem(read_time_key, nowDate)
 		if (time && nowDate.toString() !== time) {
-			localStorage.setItem(record_index_key, `${index + 1}`)
-			setInfo({ ...list[index + 1] })
+			let nextIndex = index + 1
+			if (nextIndex === list.length) {
+				nextIndex = 0
+			}
+			localStorage.setItem(record_index_key, `${nextIndex}`)
+			setInfo({ ...list[nextIndex] })
 		} else {
 			setInfo({ ...list[index] })
 		}
 	}, [])
 	const onDoubleClick = () => {
-		localStorage.setItem(record_index_key, '1')
+		localStorage.setItem(record_index_key, '3')
 	}
 	return (
 		<div className="App" onDoubleClick={onDoubleClick}>
