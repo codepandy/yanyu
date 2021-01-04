@@ -5,13 +5,13 @@ import { list } from './data.json'
 const read_time_key = 'read_time_key'
 const record_index_key = 'record_index_key'
 function App() {
-	const [ info, setInfo ] = useState({ ...list[0] })
+	const index = +(localStorage.getItem(record_index_key) || 0)
+	const [ info, setInfo ] = useState({ ...list[index] })
 
 	useEffect(() => {
 		const time = localStorage.getItem(read_time_key)
-		const index = +(localStorage.getItem(record_index_key) || 0)
 		const nowDate = new Date(new Date().toLocaleDateString()).getTime() // 获取当天凌晨的时间戳
-
+		setInfo({ ...list[index] })
 		localStorage.setItem(read_time_key, nowDate)
 		if (time && nowDate.toString() !== time) {
 			let nextIndex = index + 1
@@ -20,12 +20,10 @@ function App() {
 			}
 			localStorage.setItem(record_index_key, `${nextIndex}`)
 			setInfo({ ...list[nextIndex] })
-		} else {
-			setInfo({ ...list[index] })
 		}
 	}, [])
 	const onDoubleClick = () => {
-		localStorage.setItem(record_index_key, '3')
+		localStorage.setItem(record_index_key, '4')
 	}
 	return (
 		<div className="App" onDoubleClick={onDoubleClick}>
