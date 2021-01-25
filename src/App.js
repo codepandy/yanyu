@@ -7,6 +7,11 @@ const record_index_key = 'record_index_key'
 const pageSize = 30
 const pageCount = Math.ceil(list.length / pageSize)
 function App() {
+	const params = new URL(document.location).searchParams
+	const initIndex = params.get('index')
+	if (initIndex) {
+		localStorage.setItem(record_index_key, initIndex)
+	}
 	const index = +(localStorage.getItem(record_index_key) || 0)
 	const [ info, setInfo ] = useState({ ...list[index] })
 	const [ showText, setShowText ] = useState(true)
@@ -26,7 +31,6 @@ function App() {
 		}
 	}, [])
 	const onDoubleClick = () => {
-		localStorage.setItem(record_index_key, 24)
 		// setShowText(!showText)
 	}
 	const onNextPage = (e) => {
@@ -39,7 +43,7 @@ function App() {
 	}
 
 	return (
-		<div className="container" onDoubleClick={onDoubleClick}>
+		<div className="container">
 			{showText ? (
 				<div className="App">
 					<section className="content">{info.text}</section>
