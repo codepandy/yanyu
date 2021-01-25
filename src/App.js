@@ -26,7 +26,8 @@ function App() {
 		}
 	}, [])
 	const onDoubleClick = () => {
-		setShowText(!showText)
+		localStorage.setItem(record_index_key, 24)
+		// setShowText(!showText)
 	}
 	const onNextPage = (e) => {
 		e.stopPropagation()
@@ -38,7 +39,7 @@ function App() {
 	}
 
 	return (
-		<div className="container">
+		<div className="container" onDoubleClick={onDoubleClick}>
 			{showText ? (
 				<div className="App">
 					<section className="content">{info.text}</section>
