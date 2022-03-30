@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Dialog.css";
+import Close from "./assets/close.png";
 
 const record_index_key = "record_index_key";
 export default function Dialog(props) {
@@ -22,7 +23,7 @@ export default function Dialog(props) {
     >
       <section className="dialog-content">
         <img
-          src="http://img.wangpengpeng.site/close.svg"
+          src={Close}
           alt="关闭"
           className="dialog-close"
           onClick={onCloseDialog}
