@@ -1,40 +1,51 @@
-.dialog-container{
-    position: fixed;
-    top:0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 50;
-    background-color: rgba(0, 0, 0, 0.3);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.dialog-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.dialog-content{
-    width: 260px;
-    height: 100px;
-    background-color: rgb(243, 236, 236);
-    position: relative;
-    padding-top: 30px;
-    border-radius: 5px;
+.dialog-content {
+  width: 220px;
+  height: 120px;
+  background-color: rgb(243, 236, 236);
+  position: relative;
+  padding-top: 30px;
+  border-radius: 5px;
 }
-.dialog-close{
-    position: absolute;
-    top:5px;
-    right:5px;
-    width: 20px;
-    height: 20px;
-    background-color: rgb(179, 170, 170);
-    border-radius: 50%;
+.dialog-close {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  background-color: rgb(179, 170, 170);
+  border-radius: 50%;
 }
 
-.input-text{
-    display: block;
-    margin-left: 50%;
-    transform: translateX(-50%);
+.input-text {
+  display: block;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  border: 0;
+  outline: none;
+  width: 100px;
+  padding: 4px;
+  border-radius: 4px;
 }
-.btn-ok{
-    margin-top: 7px;
-    margin-left: 50%;
-    transform: translateX(-50%);
+.btn-ok {
+  margin-top: 14px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+  background-color: #1890ff;
+  color: #fff;
+  border: none;
+  border-radius: 3px;
+  width: 40px;
+  height: 26px;
 }
