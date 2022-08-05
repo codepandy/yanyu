@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import { list } from "./data.json";
 import Dialog from "./Dialog";
+import toast, { Toaster } from "react-hot-toast";
 
 const read_time_key = "read_time_key";
 const record_index_key = "record_index_key";
@@ -50,38 +51,59 @@ function App() {
     setVisibleVideo(false);
   };
 
+  const onCopyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(() => {
+      toast("复制成功！", {
+        position: "top-center",
+        style: {
+          backgroundColor: "#323131",
+          color: "#ffffff",
+        },
+        duration: 1000,
+      });
+    });
+  };
+
   return (
-    <div className="container">
-      {showText ? (
-        <div className="App">
-          <section className="content">{info.text}</section>
-          <section className="index" onClick={onShowVideo}>
-            {index}
-          </section>
-          <section className="length">{len}</section>
-          <Dialog visible={visibleVideo} onCloseDialog={onCloseDialog} />
-        </div>
-      ) : (
-        <div className="list-block">
-          {list
-            .slice(20 * pageIndex, (pageIndex + 1) * pageSize)
-            .map((item, index) => (
-              <section key={item.text} className="row">{`${
-                index + 1 + pageIndex * pageSize
-              }.${item.text}`}</section>
-            ))}
-          <section className="footer">
-            <div className="btn-page" onClick={onPrePage}>
-              上一页
-            </div>
-            <div className="page-text">{`${pageIndex + 1}/${pageCount}`}</div>
-            <div className="btn-page" onClick={onNextPage}>
-              下一页
-            </div>
-          </section>
-        </div>
-      )}
-    </div>
+    <>
+      <div className="container">
+        {showText ? (
+          <div className="App">
+            <section
+              className="yanyu-content"
+              onDoubleClick={onCopyToClipboard.bind(this, info.text)}
+            >
+              {info.text}
+            </section>
+            <section className="index" onClick={onShowVideo}>
+              {index}
+            </section>
+            <section className="length">{len}</section>
+            <Dialog visible={visibleVideo} onCloseDialog={onCloseDialog} />
+          </div>
+        ) : (
+          <div className="list-block">
+            {list
+              .slice(20 * pageIndex, (pageIndex + 1) * pageSize)
+              .map((item, index) => (
+                <section key={item.text} className="row">{`${
+                  index + 1 + pageIndex * pageSize
+                }.${item.text}`}</section>
+              ))}
+            <section className="footer">
+              <div className="btn-page" onClick={onPrePage}>
+                上一页
+              </div>
+              <div className="page-text">{`${pageIndex + 1}/${pageCount}`}</div>
+              <div className="btn-page" onClick={onNextPage}>
+                下一页
+              </div>
+            </section>
+          </div>
+        )}
+      </div>
+      <Toaster />
+    </>
   );
 }
 
